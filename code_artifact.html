@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Намерихте изгубени ключове?</title>
+    <!-- Зареждане на Tailwind CSS за стилове и адаптивност -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Зареждане на шрифт Inter с поддръжка на кирилица -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-[100dvh] flex flex-col items-center justify-center p-4 sm:p-6 antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
+
+    <!-- Основен контейнер, центриран на екрана без нужда от скролване -->
+    <main class="w-full max-w-md mx-auto">
+        
+        <!-- Основна картичка с информация -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-black/60 backdrop-blur-sm text-center">
+            
+            <!-- Икона на ключ с дискретен пулсиращ акцент -->
+            <div class="mx-auto mb-5 w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shadow-inner">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                </svg>
+            </div>
+
+            <!-- Заглавие и кратко обяснение -->
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2">
+                Намерихте изгубени ключове?
+            </h1>
+            <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-6">
+                Ако сте намерили тези ключове, моля свържете се със собственика:
+            </p>
+
+            <!-- Информационен блок за собственика -->
+            <div class="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 mb-6 text-left space-y-4">
+                <!-- Име на собственика -->
+                <div>
+                    <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                        Собственик
+                    </span>
+                    <p class="text-lg sm:text-xl font-bold text-slate-100 leading-snug">
+                        Борис Димитров Желязков
+                    </p>
+                </div>
+
+                <div class="h-px bg-slate-800/80 w-full"></div>
+
+                <!-- Телефонен номер -->
+                <div>
+                    <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                        Телефонен номер
+                    </span>
+                    <a href="tel:+359876352968" class="text-xl sm:text-2xl font-extrabold text-emerald-400 hover:text-emerald-300 transition-colors tracking-wide">
+                        +359 876 352 968
+                    </a>
+                </div>
+            </div>
+
+            <!-- Действия: Голям бутон за обаждане и бутон за копиране -->
+            <div class="space-y-3">
+                <!-- Основен бутон за директно обаждане -->
+                <a href="tel:+359876352968" 
+                   class="w-full flex items-center justify-center gap-3 bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] text-slate-950 font-bold text-lg py-4 px-6 rounded-2xl shadow-lg shadow-emerald-500/25 transition-all duration-150">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                    </svg>
+                    <span>Обади се сега</span>
+                </a>
+
+                <!-- Вторичен бутон за копиране на номера -->
+                <button type="button" 
+                        id="copyBtn"
+                        onclick="copyPhoneNumber()"
+                        class="w-full flex items-center justify-center gap-2 bg-slate-800/80 hover:bg-slate-800 active:scale-[0.99] text-slate-300 hover:text-white border border-slate-700/70 font-medium text-sm sm:text-base py-3.5 px-5 rounded-2xl transition-all duration-150">
+                    <!-- Икона за копиране -->
+                    <svg id="copyIcon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                    </svg>
+                    <!-- Икона за потвърждение (скрита по подразбиране) -->
+                    <svg id="checkIcon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-emerald-400 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span id="copyText">Копирай номера</span>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Благодарствена бележка най-отдолу -->
+        <p class="text-center text-xs text-slate-500 mt-5">
+            Благодаря ви за коректността! 🙏
+        </p>
+    </main>
+
+    <!-- Скрипт за надеждно копиране в клипборда с визуална обратна връзка -->
+    <script>
+        let copyTimeout;
+
+        function copyPhoneNumber() {
+            const phoneNumber = '+359876352968';
+            const btn = document.getElementById('copyBtn');
+            const copyText = document.getElementById('copyText');
+            const copyIcon = document.getElementById('copyIcon');
+            const checkIcon = document.getElementById('checkIcon');
+
+            // Използване на временен textarea елемент за максимална съвместимост на всички мобилни браузъри и iframe среди
+            const tempInput = document.createElement('textarea');
+            tempInput.value = phoneNumber;
+            tempInput.setAttribute('readonly', '');
+            tempInput.style.position = 'absolute';
+            tempInput.style.left = '-9999px';
+            document.body.appendChild(tempInput);
+            
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // За мобилни устройства (iOS/Android)
+
+            try {
+                document.execCommand('copy');
+                showCopiedFeedback();
+            } catch (err) {
+                console.error('Неуспешно копиране:', err);
+            }
+
+            document.body.removeChild(tempInput);
+
+            function showCopiedFeedback() {
+                clearTimeout(copyTimeout);
+
+                // Промяна на стила и текста на бутона за потвърждение
+                copyText.textContent = 'Номерът е копиран!';
+                copyIcon.classList.add('hidden');
+                checkIcon.classList.remove('hidden');
+                btn.classList.remove('bg-slate-800/80', 'text-slate-300', 'border-slate-700/70');
+                btn.classList.add('bg-emerald-500/15', 'text-emerald-300', 'border-emerald-500/40');
+
+                // Връщане към първоначалния вид след 2.5 секунди
+                copyTimeout = setTimeout(() => {
+                    copyText.textContent = 'Копирай номера';
+                    copyIcon.classList.remove('hidden');
+                    checkIcon.classList.add('hidden');
+                    btn.classList.add('bg-slate-800/80', 'text-slate-300', 'border-slate-700/70');
+                    btn.classList.remove('bg-emerald-500/15', 'text-emerald-300', 'border-emerald-500/40');
+                }, 2500);
+            }
+        }
+    </script>
+</body>
+</html>
