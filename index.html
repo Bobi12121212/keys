@@ -1,163 +1,207 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Намерихте изгубени ключове?</title>
-    <!-- Зареждане на Tailwind CSS за стилове и адаптивност -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Зареждане на шрифт Inter с поддръжка на кирилица -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KEY ID // Кремена Иванова Васева</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Roboto, system-ui, sans-serif; }
+    body {
+      background-color: #05070a;
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.14), transparent 60%),
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 26px 26px, 26px 26px;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+    .pass {
+      position: relative;
+      width: 100%;
+      max-width: 390px;
+      background: rgba(12, 16, 24, 0.92);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      border-radius: 22px;
+      padding: 26px 22px;
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.12), inset 0 0 20px rgba(0, 240, 255, 0.04);
+      overflow: hidden;
+    }
+    .pass::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #00f0ff, #3b82f6, transparent);
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #38bdf8;
+    }
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      background: #00f0ff;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #00f0ff;
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.8); }
+    }
+    .icon-wrap {
+      width: 58px; height: 58px;
+      margin: 0 auto 14px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.18), rgba(59, 130, 246, 0.18));
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 21px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 13.5px;
+      color: #94a3b8;
+      line-height: 1.45;
+      margin-bottom: 22px;
+    }
+    .data-grid {
+      background: #080b10;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      padding: 15px 16px;
+      margin-bottom: 20px;
+    }
+    .row {
+      padding: 8px 0;
+    }
+    .row:first-child {
+      border-bottom: 1px dashed #1e293b;
+      padding-top: 2px;
+      padding-bottom: 12px;
+    }
+    .row:last-child {
+      padding-top: 12px;
+      padding-bottom: 2px;
+    }
+    .lbl {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #64748b;
+      margin-bottom: 3px;
+    }
+    .val {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+    .val.num {
+      font-size: 19px;
+      color: #00f0ff;
+      letter-spacing: 0.5px;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 15px;
+      border-radius: 14px;
+      font-size: 15.5px;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary {
+      background: linear-gradient(135deg, #00f0ff, #2563eb);
+      color: #030712;
+      box-shadow: 0 6px 20px rgba(0, 240, 255, 0.28);
+      margin-bottom: 10px;
+    }
+    .btn-secondary {
+      background: #111827;
+      color: #cbd5e1;
+      border: 1px solid #1f2937;
+      font-size: 14px;
+    }
+    .footer-tag {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 11px;
+      color: #475569;
+      letter-spacing: 0.8px;
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-[100dvh] flex flex-col items-center justify-center p-4 sm:p-6 antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
+<body>
+  <div class="pass">
+    <div class="top-bar">
+      <div class="status"><span class="dot"></span> NFC TAG ACTIVE</div>
+      <span>ID #01</span>
+    </div>
 
-    <!-- Основен контейнер, центриран на екрана без нужда от скролване -->
-    <main class="w-full max-w-md mx-auto">
-        
-        <!-- Основна картичка с информация -->
-        <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-black/60 backdrop-blur-sm text-center">
-            
-            <!-- Икона на ключ с дискретен пулсиращ акцент -->
-            <div class="mx-auto mb-5 w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shadow-inner">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/>
-                </svg>
-            </div>
+    <div class="icon-wrap">🔑</div>
+    <h1>Намерени ключове</h1>
+    <p class="subtitle">Този ключодържател е защитен с NFC. Моля, свържете се със собственика, за да ги върнете.</p>
 
-            <!-- Заглавие и кратко обяснение -->
-            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2">
-                Намерихте изгубени ключове?
-            </h1>
-            <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-6">
-                Ако сте намерили тези ключове, моля свържете се със собственика:
-            </p>
+    <div class="data-grid">
+      <div class="row">
+        <div class="lbl">Собственик</div>
+        <div class="val">Борис Димитров Желязков</div>
+      </div>
+      <div class="row">
+        <div class="lbl">Телефон за връзка</div>
+        <div class="val num">+123456789</div>
+      </div>
+    </div>
 
-            <!-- Информационен блок за собственика -->
-            <div class="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 mb-6 text-left space-y-4">
-                <!-- Име на собственика -->
-                <div>
-                    <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
-                        Собственик
-                    </span>
-                    <p class="text-lg sm:text-xl font-bold text-slate-100 leading-snug">
-                        Борис Димитров Желязков
-                    </p>
-                </div>
+    <a href="tel:+359876342968" class="btn btn-primary">📞 Обади се на собственика</a>
+    <button onclick="copyPhone()" id="copyBtn" class="btn btn-secondary">📋 Копирай номера</button>
 
-                <div class="h-px bg-slate-800/80 w-full"></div>
+    <div class="footer-tag">SMART KEY RECOVERY SYSTEM</div>
+  </div>
 
-                <!-- Телефонен номер -->
-                <div>
-                    <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
-                        Телефонен номер
-                    </span>
-                    <a href="tel:+359876352968" class="text-xl sm:text-2xl font-extrabold text-emerald-400 hover:text-emerald-300 transition-colors tracking-wide">
-                        +359 876 352 968
-                    </a>
-                </div>
-            </div>
-
-            <!-- Действия: Голям бутон за обаждане и бутон за копиране -->
-            <div class="space-y-3">
-                <!-- Основен бутон за директно обаждане -->
-                <a href="tel:+359876352968" 
-                   class="w-full flex items-center justify-center gap-3 bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] text-slate-950 font-bold text-lg py-4 px-6 rounded-2xl shadow-lg shadow-emerald-500/25 transition-all duration-150">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-                    </svg>
-                    <span>Обади се сега</span>
-                </a>
-
-                <!-- Вторичен бутон за копиране на номера -->
-                <button type="button" 
-                        id="copyBtn"
-                        onclick="copyPhoneNumber()"
-                        class="w-full flex items-center justify-center gap-2 bg-slate-800/80 hover:bg-slate-800 active:scale-[0.99] text-slate-300 hover:text-white border border-slate-700/70 font-medium text-sm sm:text-base py-3.5 px-5 rounded-2xl transition-all duration-150">
-                    <!-- Икона за копиране -->
-                    <svg id="copyIcon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
-                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
-                    </svg>
-                    <!-- Икона за потвърждение (скрита по подразбиране) -->
-                    <svg id="checkIcon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-emerald-400 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                    <span id="copyText">Копирай номера</span>
-                </button>
-            </div>
-
-        </div>
-
-        <!-- Благодарствена бележка най-отдолу -->
-        <p class="text-center text-xs text-slate-500 mt-5">
-            Благодаря ви за коректността! 🙏
-        </p>
-    </main>
-
-    <!-- Скрипт за надеждно копиране в клипборда с визуална обратна връзка -->
-    <script>
-        let copyTimeout;
-
-        function copyPhoneNumber() {
-            const phoneNumber = '+359876352968';
-            const btn = document.getElementById('copyBtn');
-            const copyText = document.getElementById('copyText');
-            const copyIcon = document.getElementById('copyIcon');
-            const checkIcon = document.getElementById('checkIcon');
-
-            // Използване на временен textarea елемент за максимална съвместимост на всички мобилни браузъри и iframe среди
-            const tempInput = document.createElement('textarea');
-            tempInput.value = phoneNumber;
-            tempInput.setAttribute('readonly', '');
-            tempInput.style.position = 'absolute';
-            tempInput.style.left = '-9999px';
-            document.body.appendChild(tempInput);
-            
-            tempInput.select();
-            tempInput.setSelectionRange(0, 99999); // За мобилни устройства (iOS/Android)
-
-            try {
-                document.execCommand('copy');
-                showCopiedFeedback();
-            } catch (err) {
-                console.error('Неуспешно копиране:', err);
-            }
-
-            document.body.removeChild(tempInput);
-
-            function showCopiedFeedback() {
-                clearTimeout(copyTimeout);
-
-                // Промяна на стила и текста на бутона за потвърждение
-                copyText.textContent = 'Номерът е копиран!';
-                copyIcon.classList.add('hidden');
-                checkIcon.classList.remove('hidden');
-                btn.classList.remove('bg-slate-800/80', 'text-slate-300', 'border-slate-700/70');
-                btn.classList.add('bg-emerald-500/15', 'text-emerald-300', 'border-emerald-500/40');
-
-                // Връщане към първоначалния вид след 2.5 секунди
-                copyTimeout = setTimeout(() => {
-                    copyText.textContent = 'Копирай номера';
-                    copyIcon.classList.remove('hidden');
-                    checkIcon.classList.add('hidden');
-                    btn.classList.add('bg-slate-800/80', 'text-slate-300', 'border-slate-700/70');
-                    btn.classList.remove('bg-emerald-500/15', 'text-emerald-300', 'border-emerald-500/40');
-                }, 2500);
-            }
-        }
-    </script>
+  <script>
+    function copyPhone() {
+      navigator.clipboard.writeText("+359876342968");
+      const btn = document.getElementById("copyBtn");
+      btn.textContent = "✅ Номерът е копиран!";
+      setTimeout(() => { btn.textContent = "📋 Копирай номера"; }, 2500);
+    }
+  </script>
 </body>
 </html>
