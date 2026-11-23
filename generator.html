@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Генератор на NFC линкове</title>
+  <style>
+    body { font-family: sans-serif; background: #0b1120; color: #fff; padding: 20px; max-width: 420px; margin: auto; }
+    h2 { color: #00e5ff; margin-bottom: 16px; }
+    label { display: block; font-size: 13px; color: #94a3b8; margin-top: 12px; }
+    input { width: 100%; padding: 12px; margin-top: 5px; border-radius: 10px; border: 1px solid #1e293b; background: #1e293b; color: #fff; font-size: 16px; box-sizing: border-box; }
+    button { width: 100%; padding: 14px; margin-top: 18px; border-radius: 12px; border: none; background: #00e5ff; color: #000; font-weight: bold; font-size: 16px; cursor: pointer; }
+    .result { margin-top: 18px; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 10px; word-break: break-all; font-size: 13px; color: #38bdf8; }
+  </style>
+</head>
+<body>
+  <h2>🔑 Нов клиентски линк</h2>
+  
+  <label>Номер на ключодържател (ID):</label>
+  <input type="text" id="cid" placeholder="напр. 02" />
+
+  <label>Име на клиента:</label>
+  <input type="text" id="cname" placeholder="напр. Иван Петров" />
+
+  <label>Телефон (с +359):</label>
+  <input type="tel" id="cphone" placeholder="напр. +359888123456" />
+
+  <label>Награда / Бележка (по желание):</label>
+  <input type="text" id="creward" placeholder="напр. Награда 20€ при връщане" />
+
+  <button onclick="makeLink()">Генерирай и копирай линка</button>
+  <div class="result" id="output">Тук ще се появи готовият линк...</div>
+
+  <script>
+    function makeLink() {
+      const baseUrl = window.location.href.replace("generator.html", "");
+      const params = new URLSearchParams();
+
+      const id = document.getElementById("cid").value.trim();
+      const name = document.getElementById("cname").value.trim();
+      const phone = document.getElementById("cphone").value.trim();
+      const reward = document.getElementById("creward").value.trim();
+
+      if (id) params.set("id", id);
+      if (name) params.set("name", name);
+      if (phone) params.set("phone", phone);
+      if (reward) params.set("reward", reward);
+
+      const finalUrl = baseUrl + "?" + params.toString();
+      document.getElementById("output").textContent = finalUrl;
+      navigator.clipboard.writeText(finalUrl);
+      alert("✅ Линкът е копиран! Постави го в NFC Tools.");
+    }
+  </script>
+</body>
+</html>
